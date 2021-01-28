@@ -78,9 +78,9 @@ COVID_data %>%
   labs(x = "Neighbourhood Name",
        y = "Number of cases",
        fill = "Source of infection",
-       title = "Number of cases with different source of infection")+
-  theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),hjust = 0.1, vjust =1))
-
+       title = "Cases with different source of infection")+
+  theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),siz=12,hjust = 0.1, vjust =1),
+        title =element_text(size=40, face='bold'))
 ### Save image ### 
 ggsave(file="outputs/paper/bar-chart-2.jpeg", width=15, height=8, dpi=300)
 

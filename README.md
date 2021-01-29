@@ -1,16 +1,16 @@
-# Assignment 1
+#ssignment 1
 
-title: "Summary of COVID-19 Cases in Toronto"
-subtitle: "Examine Trend of COVID-19 Cases"
-author: "Xinyi Xu"
-date: "`r format(Sys.time(), '%d %B %Y')`"
-thanks: "https://github.com/xuxinyi720/Assignment1.git"
-abstract: "COVID-19 has been recognized as a global threat; thus, numerous studies have been conducted in order to control and prevent this pandemic. I am going to use the dataset from Toronto Public Healthto summarize and analyze data to find how the pandemic is evolving, and assess severity and risk in Toronto. It is crucial for the Ministry of Health and our local public health institution to have an in-depth understanding of the disease and develop the necessary interventions to prevent further spread."
+### Summary of COVID-19 Cases in Toronto ###
+## Examine Trend of COVID-19 Cases ##
+## Author: Xinyi Xu ##
+## Date: January 29, 2021 ##
 
-The full Script of the assignment 1 is under "Scripts" folder.
-The raw data is stored in the "inputs/data" folder.
-All graphs, tables are in the "outputs/paper" folder.
-The final PDF version is under "outputs/paper" folder.
+#COVID-19 has been recognized as a global threat; thus, numerous studies have been conducted in order to control and prevent this pandemic. I am going to use the dataset from Toronto Public Healthto summarize and analyze data to find how the pandemic is evolving, and assess severity and risk in Toronto. It is crucial for the Ministry of Health and our local public health institution to have an in-depth understanding of the disease and develop the necessary interventions to prevent further spread.#
+
+# The full Script of the assignment 1 is under "Scripts" folder.
+# The raw data is stored in the "inputs/data" folder.
+# All graphs, tables are in the "outputs/paper" folder.
+# The final PDF version is under "outputs/paper" folder.
 
 ### Set up ###
 library(opendatatoronto)
@@ -106,7 +106,7 @@ COVID_sum_table%>%
 
 
 ### Save image ### 
-# save.image("outputs/paper/Table-1.jpeg")
+save.image("outputs/paper/Table-1.jpeg")
 
 ### Table 2 ###
 COVID_table <-

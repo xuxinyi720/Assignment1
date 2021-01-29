@@ -1,12 +1,14 @@
 ---
-title: "COVID-19 Cases in Toronto"
-subtitle: "Examine All cases from January 2020 to January 2021"
+title: "Summary of COVID-19 Cases in Toronto"
+subtitle: "Examine Trend of COVID-19 Cases"
 author: "Xinyi Xu"
-thanks: "https://github.com/xuxinyi720/Assignment1.git"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "COVID-19 has been recognized as a global threat; thus, numerous studies have been conducted in order to control and prevent this pandemic. I am going to use the dataset from Toronto Public Health to summarize and analyze data to find how the pandemic is evolving, and assess severity and risk in Toronto. It is crucial for the Ministry of Health and our local public health institution to have an in-depth understanding of the disease and develop the necessary interventions to prevent further spread."
+thanks: "https://github.com/xuxinyi720/Assignment1.git"
+abstract: "COVID-19 has been recognized as a global threat; thus, numerous studies have been conducted in order to control and prevent this pandemic. I am going to use the dataset from Toronto Public Healthto summarize and analyze data to find how the pandemic is evolving, and assess severity and risk in Toronto. It is crucial for the Ministry of Health and our local public health institution to have an in-depth understanding of the disease and develop the necessary interventions to prevent further spread."
 output:
   bookdown::pdf_document2:
+fontfamily: mathpazo
+fontsize: 30pt
 toc: FALSE
 bibliography: references.bib
 ---
@@ -24,24 +26,25 @@ library(gt)
 
 # Introduction
 
-COVID-19, a worldwide pandemic, has reached to more than 150 nations, and is still spreading nowadays. This report aims to summarize the data and explore the trends among all COVID-19 cases reported in Toronto. I found that number of cases has risen dramatically from August to December, and finally had approximately 19,000 new cases in December. Also, I recognized the three most risky neighborhood area in Toronto. 20-29 years-old is the most vulnerable age group among all nine age-groups. There are three possible outcomes, and the recovery rate is 86.32%.
+COVID-19, a worldwide pandemic, has reached more than 150 nations and is still spreading nowadays. This report aims to summarize the data and explore the trends among all COVID-19 cases reported in Toronto. I found that the number of cases has risen dramatically from August to December, and finally had approximately 19,000 new cases in December. Also, I recognized the three most risky neighborhood areas in Toronto. Besides, 20-29 years-old is the most vulnerable age group among all nine age-groups. Finally, there are three possible outcomes, and the recovery rate is 86.32%.
 
-This paper includes two main parts which is data section and analysis section. In data section, I am going to describe the dataset from multiple aspects including source of the data, methodology of collections, ethical bias, as well as the detail dataset description. In analysis section, I will use the tidyverse [@citeTidyverse], kableExtra[@citekable], and ggplot2 [@citeggplot] to generate several charts and tables in the Rstudio environment [@citeR].  The descriptive analysis enhances our understanding of how total number of cases has been fluctuated over one year, how COVID-19 impacts each neighborhood area, which age group is the most susceptible to infection.
+This paper includes two main parts which are the data section and analysis section. In the data section, I am going to describe the dataset from multiple aspects including the source of the data, the methodology of collections, ethical bias, as well as the detailed dataset description. In the analysis section, I will use the opendatatoronto [@citeODT], tidyverse [@citeTidyverse], kableExtra[@citekable], and ggplot2 [@citeggplot] to generate several charts and tables in the Rstudio environment [@citeR].  The descriptive analysis enhances our understanding of how the total number of cases has fluctuated over one year, how COVID-19 impacts each neighborhood area, which age group is the most susceptible to infection.
 
 
 # Data
 ## Source of the data
-The dataset was published by Toronto Public Health. It was updated weekly, and it was last refreshed on January 20, 2021. Toronto Public Health takes responsibility of managing and tracking all confirmed and probable cases. The data are extracted from the provincial communicable disease reporting system (iPHIS) and Toronto's custom COVID-19 case management system (CORES) and combined for reporting. [@citeData]
+The dataset was published by Toronto Public Health. It was updated weekly, and it was last refreshed on January 20, 2021. Toronto Public Health takes the responsibility of managing and tracking all confirmed and probable cases. The data are extracted from the provincial communicable disease reporting system (iPHIS) and Toronto's custom COVID-19 case management system (CORES) and combined for reporting. [@citeData]
 
 ## Methodology of data collection
-Toronto Public Health collects data by receiving the reports of COVID-19 cases every day. To be specific, when a case that meets the provincial case definition[@citeDefinition], Toronto Public Health will immediately begin a detailed and careful investigation of each individual. In terms of how respondents are found, each individual will be directly collected from laboratory to local health department. All information will be summarized to show the trend of the pandemic. 
+Toronto Public Health collects data by receiving the reports of COVID-19 cases every day. To be specific, when a case that meets the provincial case definition[@citeDefinition], Toronto Public Health will immediately begin a detailed and careful investigation of each individual. In terms of collecting respondents, each individual will be directly collected from the laboratory to the local health department. All information will be summarized to show the trend of the pandemic. 
 
 ## Bias
-One of the most significant ethical biases is that sex-disaggregated data on confirmed COVID-19 infections and deaths are incomplete. According to the review from Data2X and Open Data Watch, accurate gender data is considered necessary for a gender-sensitive response to COVID-19 [@citeBias]. The challenge is not only that people are not collecting gender data, but also that they are not uniformly collecting it. 
+One of the most significant ethical biases is that sex-disaggregated data on confirmed COVID-19 infections and deaths are incomplete. According to the review from Data2X and Open Data Watch, accurate gender data is considered necessary for a gender-sensitive response to COVID-19 [@citeBias]. The challenge is not only that people are not collecting gender data, but also that they are not uniformly collecting it globally. 
 
 
 ## Dataset Description
-The dataset provides a list of all COVID-19 cases in Toronto from January 2020 to January 2021. There are 77,872 rows in total, as well as 18 variables describing each observation. Generally, the dataset contains demographic data, geographic data, and severity information for all confirmed and probable cases. To be specific, each case has its unique ID, episode date, reported date, and hospitalized record. Patients are coded into nine age groups and four gender categories. Also, according to the principles of epidemiology, each individual has been classified into either sporadic (occurring in the community) or outbreak-associated. For each sporadic case, it indicates the most likely way of infection, including travel, close contact with a case, institutional setting, healthcare setting, community, pending, and unknown. Also, there are three possible outcomes which is active, fatal, and resolved. In addition, Toronto is divided into 140 neighborhoods, and its corresponding FSA (first three characters of postal code) is recorded in the dataset for further local planning.
+The dataset provides a list of all COVID-19 cases in Toronto from January 2020 to January 2021. There are 77,872 rows in total, as well as 18 variables describing each observation. Generally, the dataset contains demographic data, geographic data, and severity information for all confirmed and probable cases. To be specific, each case has its unique ID, episode date, reporting date, and hospitalized records. Patients are coded into nine age groups and four gender categories. Also, according to the principles of epidemiology, each individual has been classified as either sporadic (occurring in the community) or outbreak-associated. For each sporadic case, it indicates the most likely way of infection, including travel, close contact with a case, institutional setting, healthcare setting, community, pending, and unknown. Also, there are three possible outcomes which are active, fatal, and resolved. In addition, Toronto is divided into 140 neighborhoods, and its corresponding FSA (first three characters of postal code) is recorded in the dataset for local planning.
+
 
 ```{r Workplace set-up, message=FALSE, echo = FALSE}
 ### Workplace set-up ###
@@ -76,10 +79,18 @@ COVID_data<-
 
 # Descriptive analysis
 
-First of all, we make a line chart to visualize the fluctuation in the total number of cases in 2020. We can see that the number of cases has hit the first peak to over 5000 cases in April, and has decreased from May to August. However, number of cases has increased significantly from August to December, and finally reached approximately 19,000 cases.(Figure \@ref(fig:line-1)). 
+
+First of all, we make a line chart to visualize the fluctuation in the total number of cases in 2020. We can see that the number of cases has hit the first peak to over 5000 cases in April, and has decreased from May to August. However, the number of cases has increased significantly from August to December, and finally reached approximately 19,000 cases.(Figure \@ref(fig:line-1)). 
+
+In addition, by drawing the bar chart, we can gain insight into how this pandemic affects each age group. In other words, we can know 20 to 29 years-old group is the most susceptible to infection so that we can carry out prevention planning for targeted age groups. (Figure \@ref(fig:bar-chart-1))
+The finding of the study also enhances our understanding of how COVID-19 impacts each neighborhood area differently in Toronto. According to the second bar chart, we can summarize the three most vulnerable areas by its FSA, which is M9V, M1B, and M3N. This information could also help the public health system to inform planning and equitable prioritization of public health resources. 
+(Figure \@ref(fig:bar-chart-2))
+
+Finally, I use several tables to summarize the partial dataset. For instance, there are 73,314 patients have been resolved who are either reported as 'recovered' or Where the report date is more than 14 days from symptom onset and the case is not currently hospitalized. Meanwhile, there are 2330 cases that had a fatal outcome, and 7830 individuals are still reported as active (Table \@ref(tab:table-1)). According to (Table \@ref(tab:table-2)), I recognize that the most fatal outcome happens in age-group 80-89 and above 90. Although 20-29 years-old is the most vulnerable age group, they also have the most resolved cases. This information is crucial for the Ministry of Health and our local public health institution to allocate the resources and develop the necessary interventions.
 
 
-```{r line-1, fig.cap="line-1",warning=FALSE,message=FALSE, echo = FALSE, fig.width=8, fig.height=4}
+\newpage
+```{r line-1, fig.cap="line-1",warning=FALSE,message=FALSE, echo = FALSE, fig.width=8, fig.height=6}
 data_2020<-
   COVID_data%>%
   filter(COVID_data$year == 2020)%>%
@@ -93,10 +104,12 @@ ggplot(data_2020, aes(x=month, y=Total))+
        y = "Number of Cases",
        title = "New Cases in Each Month in 2020")+
   scale_x_continuous(breaks= pretty_breaks())+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5),
+      axis.text.x=element_text(margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
+      title =element_text(size=20, face='bold'))
 ```
 
-In addition, by drawing the bar chart, we are able to gain insight into how this pandemic affect each age group. In other word, we can know 20 to 29 years-old group is the most susceptible to infection, so that we can carry out prevention planning for targeted age groups. (Figure \@ref(fig:bar-chart-1))
+
 
 
 ```{r bar-chart-1,fig.cap="bar-chart-1",warning=FALSE,message=FALSE,echo = FALSE, fig.width=10, fig.height=8}
@@ -113,25 +126,23 @@ COVID_data %>%
         )
 ```
 
-Finally, the finding of the study enhances our understanding of how COVID-19 impacts each neighborhood areas differently in Toronto. According to the second bar chart, we can summarize the three most vulnerable areas by its FSA, which is M9V, M1B, and M3N. This information could also help the public health system to inform planning and equitable prioritization of public health resources. 
-(Figure \@ref(fig:bar-chart-2))
 
-
-```{r bar-chart-2, fig.cap="bar-chart-2",warning=FALSE,message=FALSE,echo = FALSE, fig.width=20, fig.height=8}
+```{r bar-chart-2, fig.cap="bar-chart-2",warning=FALSE,message=FALSE,echo = FALSE, fig.width=25, fig.height=15}
 COVID_data %>%
-  ggplot(mapping = aes( x = FSA, fill = `Source of Infection`))+
-  geom_bar()+
+  ggplot(mapping = aes( x = FSA ))+
+  geom_bar( fill = "dark blue")+
   theme_minimal()+
   labs(x = "Neighbourhood Name",
        y = "Number of cases",
-       fill = "Source of infection",
-       title = "Cases with different source of infection")+
+       title = "Cases in Each Neighbourhood")+
   theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
         title =element_text(size=40, face='bold'))
 
 ```
 
-```{r Table-1, fig.cap="Table-1",warning=FALSE, message=FALSE,echo = FALSE, fig.width=10, fig.height=8}
+
+
+```{r table-1, tab.cap="table-1",warning=FALSE, message=FALSE,echo = FALSE, fig.width=100, fig.height=100}
 COVID_sum_table <-
   COVID_data %>%
   group_by(Outcome)%>%
@@ -146,7 +157,7 @@ COVID_sum_table%>%
 ```
 
 
-```{r Table-2, fig.cap="Table-2",message=FALSE,warning=FALSE, echo = FALSE, fig.width=10, fig.height=8}
+```{r table-2, tab.cap="table-2",message=FALSE,warning=FALSE, echo = FALSE, fig.width=10, fig.height=20}
 COVID_table <-
   COVID_data %>% count(Outcome,`Age Group`)
 
@@ -155,7 +166,7 @@ COVID_table%>%
 ```
 
 
-```{r Table-3, fig.cap="Table-3",message=FALSE,warning=FALSE，echo = FALSE, fig.width=10, fig.height=8}
+```{r table-3, tab.cap="table-3",message=FALSE,warning=FALSE，echo = FALSE, fig.width=10, fig.height=20}
 data_2020<-
   COVID_data%>%
   filter(COVID_data$year == 2020)%>%
@@ -172,8 +183,4 @@ data_2020%>%
 
 
 \newpage
-
-
 # References
-
-

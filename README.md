@@ -1,5 +1,3 @@
-#ssignment 1
-
 ### Summary of COVID-19 Cases in Toronto ###
 ## Examine Trend of COVID-19 Cases ##
 ## Author: Xinyi Xu ##
@@ -7,10 +5,10 @@
 
 #COVID-19 has been recognized as a global threat; thus, numerous studies have been conducted in order to control and prevent this pandemic. I am going to use the dataset from Toronto Public Healthto summarize and analyze data to find how the pandemic is evolving, and assess severity and risk in Toronto. It is crucial for the Ministry of Health and our local public health institution to have an in-depth understanding of the disease and develop the necessary interventions to prevent further spread.#
 
-# The full Script of the assignment 1 is under "Scripts" folder.
-# The raw data is stored in the "inputs/data" folder.
-# All graphs, tables are in the "outputs/paper" folder.
-# The final PDF version is under "outputs/paper" folder.
+#The full Script of the assignment 1 is under "Scripts" folder.#
+#The raw data is stored in the "inputs/data" folder.#
+#All graphs, tables are in the "outputs/paper" folder.#
+#The final PDF version is under "outputs/paper" folder.#
 
 ### Set up ###
 library(opendatatoronto)
@@ -59,7 +57,7 @@ ggplot(data_2020, aes(x=month, y=Total))+
 ### Save image ### 
 ggsave(file="outputs/paper/line-1.jpeg", width=4, height=4, dpi=300)
 
-### Bar Chart 1###
+### Bar Chart 1 ###
 head(COVID_data)
 COVID_data %>%
   ggplot(mapping = aes( x = `Age Group`))+

@@ -17,6 +17,7 @@ library(scales)
 library(kableExtra)
 library(dplyr)
 library(gt)
+
 ### Get data ###
 COVID_data<- 
   opendatatoronto::search_packages("COVID-19 Cases in Toronto")%>%
@@ -47,10 +48,13 @@ ggplot(data_2020, aes(x=month, y=Total))+
     color="red")+
   labs(x = "Months",
        y = "Number of Cases",
-       title = "New Cases in Each Month in 2020")+
+       title = "Number of New COVID-19 Cases in Toronto, by Months",
+       subtitle ="New cases rised again from August, 2020")+
   scale_x_continuous(breaks= pretty_breaks())+
-  theme(plot.title = element_text(hjust = 0.5))
-
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        axis.text.x=element_text(margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
+        title =element_text(size=16, face='bold'))
 ### Save image ### 
 ggsave(file="outputs/paper/line-1.jpeg", width=4, height=4, dpi=300)
 
@@ -63,26 +67,29 @@ COVID_data %>%
   labs(x = "Age Group",
        y = "Number of Cases",
        fill = "Patient Gender",
-       title = "Number of Patient in Each Age Group")+
-  theme(axis.text.x = element_text(angle = 90))
+       title = "Distribution of COVID-19 Cases by Age Group and Gender")+
+  theme(axis.text.x = element_text(angle = 90),
+        title =element_text(size=20,hjust = 0.5)
+  )
+
 
 
 ### Save image ### 
-ggsave(file="outputs/paper/bar-chart-1.jpeg", width=4, height=4, dpi=300)
+ggsave(file="outputs/paper/bar-chart-1.jpeg", width=10, height=8, dpi=300)
 
 ### Bar Chart 2 ###
 COVID_data %>%
-  ggplot(mapping = aes( x = FSA, fill = `Source of Infection`))+
-  geom_bar()+
+  ggplot(mapping = aes( x = FSA ))+
+  geom_bar( fill = "dark blue")+
   theme_minimal()+
   labs(x = "Neighbourhood Name",
        y = "Number of cases",
-       fill = "Source of infection",
-       title = "Cases with different source of infection")+
-  theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),siz=12,hjust = 0.1, vjust =1),
-        title =element_text(size=40, face='bold'))
+       title = "COVID-19 Cases in Each Neighbourhood")+
+  theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
+        title =element_text(size=30, face='bold', hjust = 0.5),
+        plot.title = element_text(size=40, face='bold', hjust = 0.5))
 ### Save image ### 
-ggsave(file="outputs/paper/bar-chart-2.jpeg", width=15, height=8, dpi=300)
+ggsave(file="outputs/paper/bar-chart-2.jpeg", width=20, height=15, dpi=300)
 
 ### Table Set-up ###
 # install.packages("kableExtra")

@@ -88,7 +88,7 @@ The finding of the study also enhances our understanding of how COVID-19 impacts
 Finally, I use several tables to summarize the partial dataset. For instance, there are 73,314 patients have been resolved who are either reported as 'recovered' or Where the report date is more than 14 days from symptom onset and the case is not currently hospitalized. Meanwhile, there are 2330 cases that had a fatal outcome, and 7830 individuals are still reported as active (Table \@ref(tab:table-1)). According to (Table \@ref(tab:table-2)), I recognize that the most fatal outcome happens in age-group 80-89 and above 90. Although 20-29 years-old is the most vulnerable age group, they also have the most resolved cases. This information is crucial for the Ministry of Health and our local public health institution to allocate the resources and develop the necessary interventions.
 
 
-\newpage
+
 ```{r line-1, fig.cap="line-1",warning=FALSE,message=FALSE, echo = FALSE, fig.width=8, fig.height=6}
 data_2020<-
   COVID_data%>%
@@ -101,11 +101,13 @@ ggplot(data_2020, aes(x=month, y=Total))+
     color="red")+
   labs(x = "Months",
        y = "Number of Cases",
-       title = "New Cases in Each Month in 2020")+
+       title = "Number of New COVID-19 Cases in Toronto, by Months",
+       subtitle ="New cases rised again from August, 2020")+
   scale_x_continuous(breaks= pretty_breaks())+
   theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
       axis.text.x=element_text(margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
-      title =element_text(size=20, face='bold'))
+      title =element_text(size=16, face='bold'))
 ```
 
 
@@ -119,7 +121,7 @@ COVID_data %>%
   labs(x = "Age Group",
        y = "Number of Cases",
        fill = "Patient Gender",
-       title = "Number of Patient in Each Age Group")+
+       title = "Distribution of COVID-19 Cases by Age Group and Gender")+
   theme(axis.text.x = element_text(angle = 90),
         title =element_text(size=20,hjust = 0.5)
         )
@@ -133,9 +135,10 @@ COVID_data %>%
   theme_minimal()+
   labs(x = "Neighbourhood Name",
        y = "Number of cases",
-       title = "Cases in Each Neighbourhood")+
+       title = "COVID-19 Cases in Each Neighbourhood")+
   theme(axis.text.x=element_text(angle=90,margin = margin(1, unit = "cm"),siz=12,hjust = 0.5, vjust =1),
-        title =element_text(size=40, face='bold'))
+        title =element_text(size=30, face='bold', hjust = 0.5),
+        plot.title = element_text(size=40, face='bold', hjust = 0.5))
 
 ```
 
@@ -151,7 +154,7 @@ COVID_sum_table <-
 
 COVID_sum_table%>%
   knitr::kable(caption = "Total Number of Three Outcomes", 
-               col.names = c("Month", "Total Cases"),
+               col.names = c("Outcome", "Total Cases"),
                align = c('l', 'l', 'l'))
 ```
 
@@ -161,7 +164,7 @@ COVID_table <-
   COVID_data %>% count(Outcome,`Age Group`)
 
 COVID_table%>%
-  knitr::kable(caption = "Outcomes of All Age Group",col.names = c("Outcome", "Age Group", "Total"))
+  knitr::kable(caption = "Possible Outcomes of All Age Group",col.names = c("Outcome", "Age Group", "Total"))
 ```
 
 

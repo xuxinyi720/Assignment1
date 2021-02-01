@@ -1,5 +1,5 @@
-# Summary of COVID-19 Cases in Toronto #
-## Examine Trend of COVID-19 Cases ##
+# The Most Vulnerable Area and Age Group in COVID-19 #
+## Examine Trend of COVID-19 Cases in Toronto ##
 ## Author: Xinyi Xu ##
 ## Date: January 29, 2021 ##
 
